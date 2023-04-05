@@ -25,12 +25,18 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        acronymViewModel.getMeaning("HMM")//should be a var
     }
 
     @BindingAdapter("meaningList")
     fun bindNewMeanings(recyclerView: RecyclerView, uiState: UIState) {
         if (uiState is UIState.SUCCESS) {
-        acronymViewModel.getMeaning("HMM")
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
