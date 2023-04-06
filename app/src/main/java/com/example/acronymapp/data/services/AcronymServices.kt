@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface AcronymServices {
 
     @GET(SF_PATH)
-    suspend fun getAcronym(
+    suspend fun getAcronymMeaning(
         @Query(SF_PARAM) acronym: String
     ): Response<AcronymResponse>
 

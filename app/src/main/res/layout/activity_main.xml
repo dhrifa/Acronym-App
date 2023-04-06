@@ -2,28 +2,51 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
     tools:context=".ui.MainActivity">
 
     <data>
+
         <variable
             name="acronymViewModel"
             type="com.example.acronymapp.ui.AcronymViewModel" />
     </data>
+
     <LinearLayout
         android:id="@+id/activity_description_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/acronym_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_an_acronym"
+            android:padding="4dp"
+            tools:text="Enter an acronym" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/acronym_rv"
-        meaningList="@{acronymViewModel.meaning}"
-        tools:listitem="@layout/acronym_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:drawableEnd="@drawable/search_24"
+            android:text="@string/search" />
+        <!--        android:onClick="@{()->acronymViewModel.getMeaning()}"-->
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/acronym_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:meaningList="@{acronymViewModel.meaning}"
+            tools:listitem="@layout/acronym_item" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:state="@{acronymViewModel.meaning}" />
+        <!--            -->
     </LinearLayout>
 </layout>
